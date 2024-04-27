@@ -1,23 +1,32 @@
 import {useEffect, useRef} from "react";
+import Countdown from "react-countdown";
+import hljs from 'highlight.js';
 import  "reveal.js/dist/reveal.css";
 import "reveal.js/dist/theme/black.css";
 import Reveal from 'reveal.js';
-import SlideOne from "./components/slides/SlideOne";
+import "reveal.js/plugin/highlight/monokai.css";
+import {SlideZero,SlideOne,SlideTwo,SlideThree,SlideFour,SlideFive, ExtraSlideOne} from "./components/slides/index";
 
 function App() {
     const deckDivRef = useRef<HTMLDivElement>(null); // reference to deck container div
     const deckRef = useRef<Reveal.Api | null>(null); // reference to deck reveal instance
+    const timerRef = useRef<Countdown| null>(null);
 
     useEffect(() => {
-        // Prevents double initialization in strict mode
         if (deckRef.current) return;
 
         deckRef.current = new Reveal(deckDivRef.current!, {
             transition: "slide",
-            // other config options
         });
 
-        deckRef.current.initialize().then(() => {
+        deckRef.current.initialize({
+      plugins:[
+    ],
+   dependencies: [
+        {src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad();}}
+    ],
+      autoPlayMedia: true,
+    }).then(() => {
             // good place for event handlers and plugin setups
         });
 
@@ -34,15 +43,34 @@ function App() {
     }, []);
 
     return (
-        // Your presentation is sized based on the width and height of
-        // our parent element. Make sure the parent is not 0-height.
+    <>
+        <Countdown autoStart={false} ref={timerRef} date={Date.now() + 900000} renderer={
+({minutes, seconds }) => {
+          return (
+     <span className="timer" onClick={
+()=>{
+  if(timerRef.current && timerRef.current.api){
+              timerRef.current.api.start()
+                    } 
+          }
+            }>{minutes}:{seconds}</span>
+          )
+}
+      }
+
+  /> 
         <div className="reveal" ref={deckDivRef}>
             <div className="slides">
-                <SlideOne/>             
-        <section>Slide 2</section>
-
+                <SlideZero />
+                <SlideOne />             
+                <SlideTwo />
+                <SlideThree />
+                <SlideFour />
+                <ExtraSlideOne />
+                <SlideFive />
             </div>
         </div>
+        </>
     );
 }
 

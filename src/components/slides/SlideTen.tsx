@@ -1,10 +1,10 @@
+import windows from '../../assets/windows_10.gif'
+
 function SlideTen(){
   return (
-    <section>
-  <div>
-slide 10 content
-  </div>
-  </section>
+    <section className="full-screen-content">
+      <img src={windows} className="full-screen-content" />
+    </section>
   )
 }
 

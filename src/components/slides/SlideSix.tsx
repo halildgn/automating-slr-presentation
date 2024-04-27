@@ -1,9 +1,7 @@
 function SlideSix(){
   return (
     <section>
-  <div>
-slide 6 content
-  </div>
+      Limitation 1 of CLI app as gif
   </section>
   )
 }

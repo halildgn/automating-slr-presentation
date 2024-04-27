@@ -1,10 +1,10 @@
+import macos from '../../assets/macos_ventura.gif';
+
 function SlideNine(){
   return (
-    <section>
-  <div>
-slide 9 content
-  </div>
-  </section>
+   <section className="full-screen-content">
+      <img src={macos} className="full-screen-content" />
+    </section>
   )
 }
 

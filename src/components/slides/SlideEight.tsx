@@ -1,9 +1,13 @@
 function SlideEight(){
   return (
     <section>
-  <div>
-slide 8 content
-  </div>
+      Limitation 3 of CLI as gif 
+	 objective
+	 related work
+	 methodology
+	 results
+	 conclusions
+ You are expected to use citations on your slides when referencing related research
   </section>
   )
 }
